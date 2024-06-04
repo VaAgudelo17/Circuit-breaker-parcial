@@ -40,8 +40,8 @@ http://localhost:8500/swagger-ui/index.html#/ 📚
 
 
 ## Capturas 📸
+![WhatsApp Image 2024-06-04 at 12 07 08 PM](https://github.com/VaAgudelo17/Circuit-breaker-parcial/assets/114451968/f5fd5adf-ea25-4948-ae0d-67a50716eb2d)
 
-![image](https://user-images.githubusercontent.com/32280800/137598073-4b3b3b3b-1b3b-4b3b-8b3b-4b3b3b3b3b3b.png)
 
 ## Autores 👥
 
