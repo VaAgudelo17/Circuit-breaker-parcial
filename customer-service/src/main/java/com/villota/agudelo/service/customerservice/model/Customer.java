@@ -1,4 +1,4 @@
-package com.villota.agudelo.service.customerserviceclient.model;
+package com.villota.agudelo.service.customerservice.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonPropertyOrder({"customerId", "firstName", "lastName"})
-public class CustomerVO {
+public class Customer {
 
     @Schema(required = false, description = "The ID for the customer. Should be a Unique ID with max 36 Characters. If not provided, the system will assign one.")
     @Size(max = 36)

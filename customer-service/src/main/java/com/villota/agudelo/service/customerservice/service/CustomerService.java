@@ -2,17 +2,17 @@ package com.villota.agudelo.service.customerservice.service;
 
 import java.util.List;
 
-import com.villota.agudelo.service.customerservice.model.CustomerVO;
+import com.villota.agudelo.service.customerservice.model.Customer;
 
 public interface CustomerService {
 
-    CustomerVO saveCustomer(CustomerVO customerVO) throws Exception;
+    Customer saveCustomer(Customer customerVO) throws Exception;
 
-    List<CustomerVO> getCustomers();
+    List<Customer> getCustomers();
 
-    CustomerVO getCustomer(String customerId);
+    Customer getCustomer(String customerId);
 
-    void updateCustomer(String customerId, CustomerVO customerVO) throws Exception;
+    void updateCustomer(String customerId, Customer customerVO) throws Exception;
 
     void deleteCustomer(String customerId) throws Exception;
 }
