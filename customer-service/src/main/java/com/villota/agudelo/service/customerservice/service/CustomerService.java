@@ -2,7 +2,7 @@ package com.villota.agudelo.service.customerservice.service;
 
 import java.util.List;
 
-import com.villota.agudelo.service.customerservice.data.CustomerVO;
+import com.villota.agudelo.service.customerservice.model.CustomerVO;
 
 public interface CustomerService {
 

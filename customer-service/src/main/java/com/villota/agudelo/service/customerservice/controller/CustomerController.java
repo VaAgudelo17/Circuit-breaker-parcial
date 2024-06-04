@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.villota.agudelo.service.customerservice.data.CustomerVO;
+import com.villota.agudelo.service.customerservice.model.CustomerVO;
 import com.villota.agudelo.service.customerservice.service.CustomerService;
 
 import javax.validation.Valid;

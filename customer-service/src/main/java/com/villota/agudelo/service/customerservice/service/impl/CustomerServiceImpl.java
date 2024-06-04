@@ -5,10 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
-import com.villota.agudelo.service.customerservice.data.CustomerVO;
-import com.villota.agudelo.service.customerservice.data.exception.NotFoundException;
-import com.villota.agudelo.service.customerservice.persistence.entity.Customer;
-import com.villota.agudelo.service.customerservice.persistence.repository.CustomerRepository;
+import com.villota.agudelo.service.customerservice.entity.Customer;
+import com.villota.agudelo.service.customerservice.model.CustomerVO;
+import com.villota.agudelo.service.customerservice.model.exception.NotFoundException;
+import com.villota.agudelo.service.customerservice.repository.CustomerRepository;
 import com.villota.agudelo.service.customerservice.service.CustomerService;
 
 import java.util.List;
