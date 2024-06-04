@@ -5,10 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
-import com.villota.agudelo.service.customerservice.data.CustomerVO;
-import com.villota.agudelo.service.customerservice.data.exception.NotFoundException;
-import com.villota.agudelo.service.customerservice.persistence.entity.Customer;
-import com.villota.agudelo.service.customerservice.persistence.repository.CustomerRepository;
+import com.villota.agudelo.service.customerservice.entity.Customer;
+import com.villota.agudelo.service.customerservice.model.Customer;
+import com.villota.agudelo.service.customerservice.model.exception.NotFoundException;
+import com.villota.agudelo.service.customerservice.repository.CustomerRepository;
 import com.villota.agudelo.service.customerservice.service.CustomerService;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 
     @Override
-    public CustomerVO saveCustomer(CustomerVO customerVO) throws Exception {
+    public Customer saveCustomer(Customer customerVO) throws Exception {
         customerVO.setCustomerId(Strings.isBlank(customerVO.getCustomerId()) ? UUID.randomUUID().toString() : customerVO.getCustomerId());
         Customer customer = Customer.builder()
                 .customerId(customerVO.getCustomerId())
@@ -36,12 +36,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerVO getCustomer(String customerId) {
+    public Customer getCustomer(String customerId) {
         Customer customer =
                 customerRepository.findByCustomerId(customerId).orElseThrow(() ->
                         new NotFoundException("Could not find customer with customerId: " + customerId));
 
-        CustomerVO customerVO = CustomerVO.builder()
+        Customer customerVO = Customer.builder()
                 .customerId(customerId)
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
@@ -50,11 +50,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerVO> getCustomers() {
+    public List<Customer> getCustomers() {
         List<Customer> customers = customerRepository.findAll();
 
-        List<CustomerVO> customerVOS = customers.stream()
-                .map(customer -> CustomerVO.builder()
+        List<Customer> customerVOS = customers.stream()
+                .map(customer -> Customer.builder()
                         .customerId(customer.getCustomerId())
                         .firstName(customer.getFirstName())
                         .lastName(customer.getLastName())
@@ -65,7 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void updateCustomer(String customerId, CustomerVO customerVO) throws Exception {
+    public void updateCustomer(String customerId, Customer customerVO) throws Exception {
         Customer customer =
                 customerRepository.findByCustomerId(customerId).orElseThrow(() ->
                         new NotFoundException("Could not find customer with customerId: " + customerId));

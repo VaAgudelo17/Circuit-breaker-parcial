@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.villota.agudelo.service.customerservice.data.CustomerVO;
+import com.villota.agudelo.service.customerservice.model.Customer;
 import com.villota.agudelo.service.customerservice.service.CustomerService;
 
 import javax.validation.Valid;
@@ -47,16 +47,16 @@ public class CustomerController {
             @ApiResponse(responseCode = "502", description = "An error has occurred with an upstream service")
     })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createCustomer(@Valid @RequestBody CustomerVO customerVO, UriComponentsBuilder uriBuilder)
+    public ResponseEntity createCustomer(@Valid @RequestBody Customer customerVO, UriComponentsBuilder uriBuilder)
         throws Exception {
-        CustomerVO newCustomerVO = customerService.saveCustomer(customerVO);
+        Customer newCustomerVO = customerService.saveCustomer(customerVO);
         URI location = uriBuilder
                 .path("/customers/{customerId}")
                 .buildAndExpand(newCustomerVO.getCustomerId())
                 .toUri();
         return ResponseEntity.created(location)
                 .contentType(MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE))
-                .body(CustomerVO.builder()
+                .body(Customer.builder()
                         .customerId(newCustomerVO.getCustomerId())
                         .firstName(newCustomerVO.getFirstName())
                         .lastName(newCustomerVO.getLastName())
@@ -98,7 +98,7 @@ public class CustomerController {
             @ApiResponse(responseCode = "502", description = "An error has occurred with an upstream service")
     })
     @PutMapping(value = "/{customerId}", consumes = JSON)
-    public ResponseEntity updateCustomer(@PathVariable String customerId, @RequestBody CustomerVO customerVO)
+    public ResponseEntity updateCustomer(@PathVariable String customerId, @RequestBody Customer customerVO)
         throws Exception {
         customerService.updateCustomer(customerId, customerVO);
         return ResponseEntity.noContent().build();

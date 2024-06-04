@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.villota.agudelo.service.customerserviceclient.data.CustomerVO;
+import com.villota.agudelo.service.customerserviceclient.model.Customer;
 
 import reactor.core.publisher.Mono;
 
@@ -28,45 +28,45 @@ public class CustomerClientController {
     private final ReactiveCircuitBreakerFactory reactiveCircuitBreakerFactory;
 
     @PostMapping("/customers")
-    public Mono<CustomerVO> createCustomer(CustomerVO customerVO){
+    public Mono<Customer> createCustomer(Customer customerVO){
         return webClient.post()
                 .uri("/customers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(customerVO), CustomerVO.class)
+                .body(Mono.just(customerVO), Customer.class)
                 .retrieve()
-                .bodyToMono(CustomerVO.class)
+                .bodyToMono(Customer.class)
                 .timeout(Duration.ofMillis(10_000))
                 .transform(it -> {
                     ReactiveCircuitBreaker rcb = reactiveCircuitBreakerFactory.create("customer-service");
-                    return rcb.run(it, throwable -> Mono.just(CustomerVO.builder().build()));
+                    return rcb.run(it, throwable -> Mono.just(Customer.builder().build()));
                 });
     }
 
     @GetMapping("/customers/{customerId}")
-    public Mono<CustomerVO> getCustomer(@PathVariable String customerId) {
+    public Mono<Customer> getCustomer(@PathVariable String customerId) {
         return webClient
                 .get().uri("/customers/" + customerId)
                 .retrieve()
-                .bodyToMono(CustomerVO.class)
+                .bodyToMono(Customer.class)
                 .transform(it -> {
                     ReactiveCircuitBreaker rcb = reactiveCircuitBreakerFactory.create("customer-service");
-                    return rcb.run(it, throwable -> Mono.just(CustomerVO.builder().build()));
+                    return rcb.run(it, throwable -> Mono.just(Customer.builder().build()));
                 });
     }
 
     @PutMapping("/customers/{customerId}")
-    public Mono<CustomerVO> updateCustomer(@PathVariable String customerId, CustomerVO customerVO){
+    public Mono<Customer> updateCustomer(@PathVariable String customerId, Customer customerVO){
         return webClient.put()
                 .uri("/customers/" + customerVO.getCustomerId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(customerVO), CustomerVO.class)
+                .body(Mono.just(customerVO), Customer.class)
                 .retrieve()
-                .bodyToMono(CustomerVO.class)
+                .bodyToMono(Customer.class)
                 .transform(it -> {
                     ReactiveCircuitBreaker rcb = reactiveCircuitBreakerFactory.create("customer-service");
-                    return rcb.run(it, throwable -> Mono.just(CustomerVO.builder().build()));
+                    return rcb.run(it, throwable -> Mono.just(Customer.builder().build()));
                 });
     }
 
