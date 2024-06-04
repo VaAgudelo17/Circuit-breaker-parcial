@@ -1,0 +1,33 @@
+server:
+  port: 8600
+  servlet:
+    context-path: /
+
+resilience4j.circuitbreaker:
+  instances:
+    customer-service:
+      failureRateThreshold: 50
+      minimumNumberOfCalls: 10
+      slidingWindowType: TIME_BASED
+      slidingWindowSize: 10
+      waitDurationInOpenState: 50s
+      permittedNumberOfCallsInHalfOpenState: 3
+
+spring:
+  datasource:
+    name: customer-service
+    jdbc-url: jdbc:postgresql://localhost:5432/customerservice
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    tlsEnabled: true
+    minimum-idle: 10 
+    maximum-pool-size: 50
+    idle-timeout: 30000
+    max-lifetime: 60000 
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    pageable:
+      page-size: 100
