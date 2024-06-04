@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.villota.agudelo.service.customerserviceclient.data.CustomerVO;
+import com.villota.agudelo.service.customerserviceclient.model.CustomerVO;
 
 import reactor.core.publisher.Mono;
 

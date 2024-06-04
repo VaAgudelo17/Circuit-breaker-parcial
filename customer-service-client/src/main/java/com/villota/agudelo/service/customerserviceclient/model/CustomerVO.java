@@ -1,4 +1,4 @@
-package com.villota.agudelo.service.customerserviceclient.data;
+package com.villota.agudelo.service.customerserviceclient.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;

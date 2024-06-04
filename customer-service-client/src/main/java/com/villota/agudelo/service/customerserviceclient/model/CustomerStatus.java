@@ -1,4 +1,4 @@
-package com.villota.agudelo.service.customerserviceclient.data;
+package com.villota.agudelo.service.customerserviceclient.model;
 
 public enum CustomerStatus {
     CREATED,
