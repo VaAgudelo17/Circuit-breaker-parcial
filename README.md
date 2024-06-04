@@ -1,5 +1,5 @@
 # ❌CIRCUIT BREAKER❌
-## Parcial
+## Tercer Parcial
 #### Presentado por: Nicolas Ramirez Villota y Valentina Agudelo Maldonado
 
 ### ⭕️ Definición 
